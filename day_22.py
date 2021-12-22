@@ -1,4 +1,5 @@
 import numpy as np
+from time import perf_counter
 
 input = """on x=-7..46,y=-33..20,z=-18..35
 on x=-30..15,y=-49..0,z=-45..4
@@ -555,7 +556,7 @@ def task1(input_str, min, max):
         for y in range(min + max, max + max + 1):
             for z in range(min + max, max + max + 1):
                 counter += grid[x, y, z]
-    print(f"Task 1: {counter}")
+    return counter
 
 class Cube:
     def __init__(self, x_min, x_max, y_min, y_max, z_min, z_max, status: bool):
@@ -577,34 +578,26 @@ class Cube:
         if self.z_max < other_cube.z_min or self.z_min > other_cube.z_max:
             return None
 
-        return Cube(min(self.x_max, other_cube.x_max), max(self.x_min, other_cube.x_min), 
-                    min(self.y_max, other_cube.y_max), max(self.y_min, other_cube.y_min),
-                    min(self.z_max, other_cube.z_max), max(self.z_min, other_cube.z_min),
-                    other_cube.status if other_cube.status != self.status else not other_cube.status)
+        return Cube(max(self.x_min, other_cube.x_min), min(self.x_max, other_cube.x_max), 
+                    max(self.y_min, other_cube.y_min), min(self.y_max, other_cube.y_max), 
+                    max(self.z_min, other_cube.z_min), min(self.z_max, other_cube.z_max),
+                    0)
         
 
 def task2(input_str):
     cubes = []
     reboot_seq = parse_input(input_str, -1000000, 1000000)
     counter = 0
+
     for seq in reboot_seq:
-        print(len(cubes))
-        counter += 1
-        print(f"sequence {counter}")
         new_cube = Cube(seq[1], seq[2], seq[3], seq[4], seq[5], seq[6], seq[0])
-        off_cubes = []
         for cube in cubes.copy():
-            intersection = cube.intersect(new_cube)
-            if not intersection:
-                continue
-            else:
+            intersection = new_cube.intersect(cube)
+            if intersection:
+                intersection.status = not cube.status
                 cubes.append(intersection)
-                if not intersection.status:
-                    off_cubes.append(intersection)
         if new_cube.status:
             cubes.append(new_cube)
-            for rem in off_cubes:
-                cubes.append(rem)
 
     volume = 0
     for cube in cubes:
@@ -613,10 +606,19 @@ def task2(input_str):
         else:
             volume -= cube.volume
 
-    print(volume)
+    return volume
 
-        
+start = perf_counter()
+result1 = task1(input, -50, 50)
+stop = perf_counter()
+elapsed1 = stop - start
+start = perf_counter()
+result2 = task2(input)
+stop = perf_counter()
+elapsed2 = stop - start
 
-task1(input, -50, 50)
-
-task2(example2)
+print(f"Task 1: {result1}")
+print(f"Execution time: {elapsed1}s")
+print("")
+print(f"Task 1: {result2}")
+print(f"Execution time: {elapsed2}s")
