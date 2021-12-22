@@ -1,3 +1,5 @@
+import numpy as np
+
 input = """--- scanner 0 ---
 718,-319,-758
 -765,759,419
@@ -943,3 +945,114 @@ example = """--- scanner 0 ---
 891,-625,532
 -652,-548,-490
 30,-46,-14"""
+
+def read_input(input_str):
+    scanner_split = input_str.split("\n\n")
+    scanner_data = []
+    for idx, scanners in enumerate(scanner_split):
+        lines = scanners.splitlines()
+        scanner_data.append([])
+        for i in range(1, len(lines)):
+            entry = lines[i]
+            coords = entry.split(",")
+            tup = (int(coords[0]), int(coords[1]), int(coords[2]))
+            scanner_data[idx].append(tup) 
+    return scanner_data
+
+# Rotations (counter clockwise)
+def rotate_around_x_axis(x, y, z):
+    return x, z, -y
+
+def rotate_around_y_axis(x, y, z):
+    return z, y, -x
+
+def rotate_around_z_axis(x, y, z):
+    return y, -x, z
+
+def every_rotation(x, y, z):
+    rotations = set()
+    for x_axis in range(4):
+        x, y, z = rotate_around_x_axis(x, y, z)
+        for y_axis in range(4):
+            x, y, z = rotate_around_y_axis(x, y, z)
+            for z_axis in range(4):
+                x, y, z = rotate_around_z_axis(x, y, z)
+                rotations.add((x, y, z))
+    return rotations
+
+def euc_dist(a, b):
+    return np.linalg.norm(np.array(a)-np.array(b))
+
+def found_12_overlapping_beacons(rel_beacons, known_scanner_beacons):
+    counter = 0
+    overlap_known_idx = []
+    overlap_idx = []
+    for i1 in range(len(rel_beacons)):
+        for i2 in range(i1 + 1, len(rel_beacons)):
+            for j1 in range(len(known_scanner_beacons)):
+                for j2 in range(j1 + 1, len(known_scanner_beacons)):
+                    eucl1 = euc_dist(rel_beacons[i1], rel_beacons[i2])
+                    eucl2 = euc_dist(known_scanner_beacons[j1], known_scanner_beacons[j2])
+                    if eucl1 == eucl2:
+                        counter += 1
+                        overlap_idx.append((i1, i2))
+                        overlap_known_idx.append((j1, j2))
+                        if counter >= 12:
+                            return True, overlap_known_idx, overlap_idx
+    return False, overlap_known_idx, overlap_idx
+
+def get_overlapping_beacons(overlap_known_idx, overlap_idx):
+    known_beacons = set()
+    rel_beacons = set()
+    for i in range(len(overlap_idx)):
+        pair = overlap_idx[i]
+        pair_known = overlap_known_idx[i]
+        known_beacons.add(pair_known[0])
+        known_beacons.add(pair_known[1])
+        rel_beacons.add(pair[0])
+        rel_beacons.add(pair[1])
+    return(known_beacons, rel_beacons)
+
+def enter_scanner_location(overlapping_known_beacons, overlapping_rel_beacons, known_scanner_idx, scanner_idx, scanner_data, scanner_locations):
+
+
+
+
+    scanner_locations[scanner_idx] = (0, 0, 0)
+
+def task1(scanner_data):
+    scanner_locations = [(0, 0, 0)]
+    for i in range(len(scanner_data) - 1):
+        scanner_locations.append(None)
+    known_scanners = {0}
+    while(len(known_scanners) < len(scanner_data)):
+        for scanner_idx in range(1, len(scanner_data)):
+            known_scanners_copy = known_scanners.copy()
+            rel_beacons = scanner_data[scanner_idx]
+            for known_scanner_idx in known_scanners_copy:
+                if scanner_idx in known_scanners:
+                    continue
+                else:
+                    known_scanner_beacons = scanner_data[known_scanner_idx]
+                    # Now try to find 12 overlapping beacons
+                    flag, overlap_known_idx, overlap_idx = found_12_overlapping_beacons(rel_beacons, known_scanner_beacons)
+                    if flag:
+                        assert(len(overlap_idx) == len(overlap_known_idx) == 12)
+                        overlapping_known_beacons, overlapping_rel_beacons = get_overlapping_beacons(overlap_known_idx, overlap_idx)
+                        assert(len(overlapping_rel_beacons) == len(overlapping_known_beacons))
+                        if (len(overlapping_rel_beacons) >= 12):
+                            print(f"Found 12 overlapping beacons for scanner {known_scanner_idx} and {scanner_idx}.")
+                            known_scanners.add(scanner_idx)
+                            enter_scanner_location(overlapping_known_beacons, overlapping_rel_beacons, known_scanner_idx, scanner_idx, scanner_data, scanner_locations)
+
+
+    return scanner_locations, known_scanners
+
+
+
+
+# Task 1
+scanner_data = read_input(example)
+scanner_locations, known_scanners = task1(scanner_data)
+print(scanner_locations)
+print(known_scanners)
