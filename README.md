@@ -7,7 +7,7 @@
 | Day | Name | Solutions | Stars |
 | :------: | :-------------------: | :--------------: | :--------: |
 | 01 | [Sonar Sweep](https://adventofcode.com/2021/day/1) | [Python](2021/day_1.py) | :star: :star:
-| 02 | [Deep Dive](https://adventofcode.com/2021/day/2) | [Python](2021/day_2.py) | :star: :star:
+| 02 | [Deep Dive](https://adventofcode.com/2021/day/2) | [Python](2021/day_2.py) | :star::star:
 | 03 | [Binary Diagnostic](https://adventofcode.com/2021/day/3) | [Python](2021/day_3.py) | :star: :star:
 | 04 | [Giant Squid](https://adventofcode.com/2021/day/4) | [Python](2021/day_4.py) | :star: :star:
 | 05 | [Hydrothermal Venture](https://adventofcode.com/2021/day/5) | [Python](2021/day_5.py) | :star: :star:
