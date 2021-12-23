@@ -1,36 +1,24 @@
 import numpy as np
 from time import perf_counter
 
-input = """#############
-#...........#
-###A#B#C#D###
-  #A#B#C#D#
-  #A#B#C#D#
-  #A#B#C#D#
-  #########"""
+input = """"""
 
-example = """#############
-#...........#
-###B#C#B#D###
-  #A#D#C#A#
-  #########"""
+example = """"""
 
 
 def task1():
-    # Quickly solved by hand :)
     return
 
 def task2():
-    # Quickly solved by hand :)
     return
 
 
 start = perf_counter()
-result1 = task1(input, -50, 50)
+result1 = task1(example)
 stop = perf_counter()
 elapsed1 = stop - start
 start = perf_counter()
-result2 = task2(input)
+result2 = task2(example)
 stop = perf_counter()
 elapsed2 = stop - start
 
