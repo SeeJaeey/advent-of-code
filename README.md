@@ -30,4 +30,4 @@
 | 22 | [Reactor Reboot](https://adventofcode.com/2021/day/22) | [Python](2021/day_22.py) | :star::star:
 | 23 | [Amphipod](https://adventofcode.com/2021/day/23) | [Python](2021/day_23.py) | :star::star:
 | 24 | [TBA](https://adventofcode.com/2021/day/24) | [Python](2021/day_24.py) | :x::x:
-| 25 | [TBA](https://adventofcode.com/2021/day/25) | [Python](2021/day_25.py) | :x::x:
+| 25 | [TBA](https://adventofcode.com/2021/day/25) | [Python](2021/day_25.py) | :star::x:
