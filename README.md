@@ -29,5 +29,5 @@
 | 21 | [Dirac Dice](https://adventofcode.com/2021/day/21) | [Python](2021/day_21.py) | :star::star:
 | 22 | [Reactor Reboot](https://adventofcode.com/2021/day/22) | [Python](2021/day_22.py) | :star::star:
 | 23 | [Amphipod](https://adventofcode.com/2021/day/23) | [Python](2021/day_23.py) | :star::star:
-| 24 | [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) | :x: | :x::x:
+| 24 | [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) | [Python](2021/day_24.py) | :star::star:
 | 25 | [Sea Cucumber](https://adventofcode.com/2021/day/25) | [Python](2021/day_25.py) | :star::x:
