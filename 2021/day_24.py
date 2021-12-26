@@ -325,26 +325,31 @@ def valid_model_number(instructions, digit, variables):
 
     return variables
 
+# ---------------------------------------------------------
 # More a reverse engineering task than a programming task..
+# ---------------------------------------------------------
+
+# D = C - 8
+# F = E + 2
+# J = I - 6
+# K = H - 5
+# L = G + 7
+# M = B
+# N = A + 5
+
 def task1(input_str):
     instructions_per_digit = parse_input(input_str)
-    result = '11911316711816'
-    min_model_num3 = '11917919939999'
-    min_model_num2 = '99917919934891'
-    test = '19927819934849'
-    min_model_num = '99999999934895'
-    model_number = '99999999999999'
-    start_model_number = result
+    max_number = '49917929934999'
+    start_model_number = max_number
     assert(len(start_model_number) == 14)
     min = (100000000000, '99999999999999')
     while(True):
         variables = {'w': 0, 'x': 0, 'y': 0, 'z': 0}
         print(f"Model number: {start_model_number}")
-        print(f"Minimum so far: {min}")
         for digit_count in range(len(instructions_per_digit)):
             variables = valid_model_number(instructions_per_digit[digit_count], int(start_model_number[digit_count]), variables)
         print(f"Z: {variables['z']}")
-        if variables['z'] <= 8 or int(start_model_number) < 11111111111111:
+        if variables['z'] == 0 or int(start_model_number) < 11111111111111:
             break
         else:
             if variables['z'] < min[0]:
@@ -356,7 +361,27 @@ def task1(input_str):
     return start_model_number
 
 def task2(input_str):
-    return
+    instructions_per_digit = parse_input(input_str)
+    min_number = '11911316711816'
+    start_model_number = min_number
+    assert(len(start_model_number) == 14)
+    min = (100000000000, '99999999999999')
+    while(True):
+        variables = {'w': 0, 'x': 0, 'y': 0, 'z': 0}
+        print(f"Model number: {start_model_number}")
+        for digit_count in range(len(instructions_per_digit)):
+            variables = valid_model_number(instructions_per_digit[digit_count], int(start_model_number[digit_count]), variables)
+        print(f"Z: {variables['z']}")
+        if variables['z'] == 0 or int(start_model_number) < 11111111111111:
+            break
+        else:
+            if variables['z'] < min[0]:
+                min = (variables['z'], start_model_number)
+            start_model_number = str(int(start_model_number) - 10)
+            while '0' in start_model_number:
+                start_model_number = str(int(start_model_number) - 10)
+
+    return start_model_number
 
 
 start = perf_counter()
@@ -364,7 +389,7 @@ result1 = task1(input)
 stop = perf_counter()
 elapsed1 = stop - start
 start = perf_counter()
-result2 = task2(example)
+result2 = task2(input)
 stop = perf_counter()
 elapsed2 = stop - start
 
