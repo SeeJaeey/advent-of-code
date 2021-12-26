@@ -2,7 +2,7 @@
 
 ## 2021 
 
-### 44/50:star:
+### 45/50:star:
 
 | Day | Name | Solutions | Stars |
 | :------: | :-------------------: | :--------------: | :--------: |
@@ -24,10 +24,10 @@
 | 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | [Python](2021/day_16.py) | :star::star:
 | 17 | [Trick Shot](https://adventofcode.com/2021/day/17) | [Python](2021/day_17.py) | :star::star:
 | 18 | [Snailfish](https://adventofcode.com/2021/day/18) | [Python](2021/day_18.py) | :star::star:
-| 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | [Python](2021/day_19.py) | :x::x:
+| 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | :x: | :x::x:
 | 20 | [Trench Map](https://adventofcode.com/2021/day/20) | [Python](2021/day_20.py) | :star::star:
 | 21 | [Dirac Dice](https://adventofcode.com/2021/day/21) | [Python](2021/day_21.py) | :star::star:
 | 22 | [Reactor Reboot](https://adventofcode.com/2021/day/22) | [Python](2021/day_22.py) | :star::star:
 | 23 | [Amphipod](https://adventofcode.com/2021/day/23) | [Python](2021/day_23.py) | :star::star:
-| 24 | [TBA](https://adventofcode.com/2021/day/24) | [Python](2021/day_24.py) | :x::x:
-| 25 | [TBA](https://adventofcode.com/2021/day/25) | [Python](2021/day_25.py) | :x::x:
+| 24 | [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) | :x: | :x::x:
+| 25 | [Sea Cucumber](https://adventofcode.com/2021/day/25) | [Python](2021/day_25.py) | :star::x:
